@@ -16,4 +16,3 @@ For now the program plays simply and stupidly, it chooses a random move.
 
 === Bugs
 - when the player loses the game the message is still "you won"
-- player can pick previously picked positions
