@@ -1,6 +1,7 @@
 Capstone 1 Tic-Tac-Toe
 ======================
 last modified: 01.03.2018.
+python version: 3.5.1
 
 == Description
 This is a first capstone project for the course.
