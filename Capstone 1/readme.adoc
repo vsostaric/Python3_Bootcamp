@@ -1,0 +1,19 @@
+Capstone 1 Tic-Tac-Toe
+======================
+last modified: 01.03.2018.
+
+== Description
+This is a first capstone project for the course.
+The task was creating a simple text based game of tic-tac-toe.
+
+== How to run
+To run the game start the "game.py" script.
+
+== Still to do
+=== Improvement
+- the task was to create a two player game but I choose to create a single player game with the idea of one day revisiting this task and creating a bot to play the game.
+For now the program plays simply and stupidly, it chooses a random move.
+
+=== Bugs
+- when the player loses the game the message is still "you won"
+- player can pick previously picked positions

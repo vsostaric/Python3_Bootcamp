@@ -1,12 +1,18 @@
 from constants import player_1_victory
 from constants import player_1_loss
 from constants import no_victor
+from constants import draw
+from constants import all_positions
+
+num_of_positions = all_positions.__len__()
 
 def check_victory_condition(player_1_fields, player_2_fields):
     if(check_player_victory(player_1_fields)):
         return player_1_victory
     elif(check_player_victory(player_2_fields)):
         return player_1_loss
+    elif(check_draw_condition(player_1_fields, player_2_fields)):
+        return draw
     return no_victor
 
 def check_player_victory(player_fields):
@@ -27,5 +33,10 @@ def check_player_victory(player_fields):
     elif(player_fields.issubset({1,5,9})):
         return True
     elif(player_fields.issubset({3,5,7})):
+        return True
+    return False
+
+def check_draw_condition(player_1_fields, player_2_fields):
+    if((player_1_fields.__len__() + player_2_fields.__len__()) >= num_of_positions):
         return True
     return False

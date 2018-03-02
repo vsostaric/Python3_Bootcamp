@@ -1,3 +1,4 @@
+import sys
 from constants import all_positions
 from constants import no_victor
 from input_sign import input_sign
@@ -11,10 +12,10 @@ free_positions = all_positions
 def game():
     while(True):
         answer = input('Do you want to play a game? (Yes/No) ')
-        if answer.lower() == 'no':
+        if answer.lower() == 'no' or answer.lower() == 'n':
             print('Ok, bye then')
             return
-        elif answer.lower() == 'yes':
+        elif answer.lower() == 'yes' or answer.lower() == 'y':
             print('Great, let\'s play!')
             play_game()
         else:
@@ -37,4 +38,9 @@ def play_game():
         if(check_state != no_victor):
             print(check_state)
             return
-game()
+
+def main(args):
+    game()
+
+if __name__ == '__main__':
+    main(sys.argv)
