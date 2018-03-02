@@ -5,4 +5,4 @@ player_1_victory = 'You won'
 player_1_loss = 'You lost'
 
 no_victor = 'none'
-draw = 'draw'
+draw = 'It\'s a draw, most matches here are though'

@@ -31,10 +31,11 @@ def play_game():
 
     while(True):
         write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
-        player_1_fields.add(get_player_input())
+        player_1_fields.add(get_player_input(player_1_fields, player_2_fields))
         player_2_fields.add(get_next_move(player_2_fields, player_1_fields))
 
         check_state = check_victory_condition(player_1_fields, player_2_fields)
+        print(check_state)
         if(check_state != no_victor):
             print(check_state)
             return
