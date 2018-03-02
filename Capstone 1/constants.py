@@ -4,5 +4,4 @@ layout = '{d[0]}|{d[1]}|{d[2]}\n-----\n{d[3]}|{d[4]}|{d[5]}\n-----\n{d[6]}|{d[7]
 player_1_victory = 'You won'
 player_1_loss = 'You lost'
 
-no_victor = 'none'
 draw = 'It\'s a draw, most matches here are though'

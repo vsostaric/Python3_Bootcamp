@@ -1,12 +1,15 @@
 import sys
 from constants import all_positions
-from constants import no_victor
+from constants import player_1_victory
+from constants import player_1_loss
+from constants import draw
 from input_sign import input_sign
 from draw_layout import write_out_layout
 from draw_layout import write_out_layout_legend
 from get_player_input import get_player_input
 from ai_player import get_next_move
-from check_victory_condition import check_victory_condition
+from check_victory_condition import check_player_victory
+from check_victory_condition import check_draw_condition
 free_positions = all_positions
 
 def game():
@@ -31,13 +34,22 @@ def play_game():
 
     while(True):
         write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
-        player_1_fields.add(get_player_input(player_1_fields, player_2_fields))
-        player_2_fields.add(get_next_move(player_2_fields, player_1_fields))
 
-        check_state = check_victory_condition(player_1_fields, player_2_fields)
-        print(check_state)
-        if(check_state != no_victor):
-            print(check_state)
+        player_1_fields.add(get_player_input(player_1_fields, player_2_fields))
+        if(check_player_victory(player_1_fields)):
+            print(player_1_victory)
+            write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
+            return
+
+        player_2_fields.add(get_next_move(player_2_fields, player_1_fields))
+        if(check_player_victory(player_2_fields)):
+            print(player_1_loss)
+            write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
+            return
+
+        if(check_draw_condition(player_1_fields, player_2_fields)):
+            print(draw)
+            write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
             return
 
 def main(args):
