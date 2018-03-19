@@ -11,3 +11,5 @@ To run the game start the "game.py" script.
 
 == Still to do
 === Improvement
+- Add betting element
+- improve on game workflow - duplicated flow, player and dealer

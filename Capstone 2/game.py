@@ -45,6 +45,33 @@ def play_game():
             print("Bust! You lose!")
             return
 
+    print("Dealer's turn")
+
+    dealerHand = Hand()
+    dealerCardValues = dealerHand.getCardValue()
+
+    while(True):
+        dealerHand.printOutHand()
+        print("Hand value: " + str(dealerCardValues))
+
+        card = deck[deckPosition]
+        deckPosition += 1
+        dealerHand.addCard(card)
+
+        dealerCardValues = dealerHand.getCardValue()
+
+        if dealerCardValues > 21:
+            dealerHand.printOutHand()
+            print("Hand value: " + str(dealerCardValues))
+            print("Dealer Busts! You win!")
+            return
+
+        if dealerCardValues > cardValues:
+            dealerHand.printOutHand()
+            print("Hand value: " + str(dealerCardValues))
+            print("Dealer wins!")
+            return
+
     return
 
 

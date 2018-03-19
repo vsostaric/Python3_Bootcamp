@@ -12,7 +12,7 @@ class Hand:
             else:
                 valueSum += value
         for i in range(0, aces):
-            if valueSum < 21 and (valueSum + 11) < 21:
+            if valueSum < 21 and (valueSum + 11) <= 21:
                 valueSum += 11
             else:
                 valueSum += 1
