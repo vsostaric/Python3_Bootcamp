@@ -1,20 +1,20 @@
+import random
+from constants import suites
+from constants import faces
 from card import Card
-
-suites = {"D", "C", "H", "S"}
-faces = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"}
-
-
-def getValue(face):
-    try:
-        value = int(face)
-        return value
-    except ValueError:
-        return 10
 
 
 def createDeck():
-    cards = []
+    deck = []
     for suite in suites:
         for face in faces:
-            cards.append(Card(face, suite, getValue(face)))
-    return cards
+            deck.append(Card(face, suite))
+    return deck
+
+
+def shuffleDeck(deck):
+    random_list = random.sample(range(len(deck)), len(deck))
+    shuffled_deck = []
+    for i in random_list:
+        shuffled_deck.append(deck[i])
+    return shuffled_deck
