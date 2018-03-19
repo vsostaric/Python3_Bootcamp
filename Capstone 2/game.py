@@ -24,10 +24,10 @@ def play_game():
     deckPosition = 0
 
     playerHand = Hand()
+    cardValues = playerHand.getCardValue()
 
     while (True):
         playerHand.printOutHand()
-        cardValues = playerHand.getCardValue()
         print("Hand value: " + str(cardValues))
         playerMove = get_player_move()
         if (playerMove == 2):
@@ -40,6 +40,8 @@ def play_game():
         cardValues = playerHand.getCardValue()
 
         if cardValues > 21:
+            playerHand.printOutHand()
+            print("Hand value: " + str(cardValues))
             print("Bust! You lose!")
             return
 

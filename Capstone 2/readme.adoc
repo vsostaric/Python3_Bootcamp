@@ -1,0 +1,13 @@
+= Capstone 2 Blackjack
+last modified: 19.03.2018.
+python version: 3.5.1
+
+== Description
+This is a first capstone project for the course.
+The task was creating a simple text based game of blackjack with simplified rules
+
+== How to run
+To run the game start the "game.py" script.
+
+== Still to do
+=== Improvement

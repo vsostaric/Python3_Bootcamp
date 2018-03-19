@@ -9,10 +9,13 @@ class Hand:
             value = getValue(card.face)
             if value == 1:
                 aces += 1
-            valueSum += value
+            else:
+                valueSum += value
         for i in range(0, aces):
-            if valueSum < 21 and (valueSum + 10) < 21:
-                valueSum += 10
+            if valueSum < 21 and (valueSum + 11) < 21:
+                valueSum += 11
+            else:
+                valueSum += 1
         return valueSum
 
     def addCard(self, card):
