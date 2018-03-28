@@ -14,3 +14,6 @@ To run the game start the "game.py" script.
 === Improvement
 - the task was to create a two player game but I choose to create a single player game with the idea of one day revisiting this task and creating a bot to play the game.
 For now the program plays simply and stupidly, it chooses a random move.
+- create some graphics
+
+=== Bugs

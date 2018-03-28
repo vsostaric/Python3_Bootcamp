@@ -1,19 +1,22 @@
 import sys
+
+from ai_player import get_next_move
+from check_victory_condition import check_draw_condition
+from check_victory_condition import check_player_victory
 from constants import all_positions
-from constants import player_1_victory
-from constants import player_1_loss
 from constants import draw
-from input_sign import input_sign
+from constants import player_1_loss
+from constants import player_1_victory
 from draw_layout import write_out_layout
 from draw_layout import write_out_layout_legend
 from get_player_input import get_player_input
-from ai_player import get_next_move
-from check_victory_condition import check_player_victory
-from check_victory_condition import check_draw_condition
+from input_sign import input_sign
+
 free_positions = all_positions
 
+
 def game():
-    while(True):
+    while True:
         answer = input('Do you want to play a game? (Yes/No) ')
         if answer.lower() == 'no' or answer.lower() == 'n':
             print('Ok, bye then')
@@ -24,6 +27,7 @@ def game():
         else:
             print('Didn\'t catch that :(')
 
+
 def play_game():
     player_1_sign, player_2_sign = input_sign()
     player_1_fields = set()
@@ -32,28 +36,37 @@ def play_game():
     print('Position layout: ')
     write_out_layout_legend()
 
-    while(True):
+    while True:
         write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
 
-        player_1_fields.add(get_player_input(player_1_fields, player_2_fields))
-        if(check_player_victory(player_1_fields)):
+        turn_outcome = play_turn(player_1_fields, player_2_fields, get_player_input)
+        if turn_outcome == 1:
             print(player_1_victory)
             write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
             return
 
-        player_2_fields.add(get_next_move(player_2_fields, player_1_fields))
-        if(check_player_victory(player_2_fields)):
+        turn_outcome = play_turn(player_2_fields, player_1_fields, get_next_move)
+        if turn_outcome == 1:
             print(player_1_loss)
             write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
             return
 
-        if(check_draw_condition(player_1_fields, player_2_fields)):
+        if check_draw_condition(player_1_fields, player_2_fields):
             print(draw)
             write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
             return
 
+
+def play_turn(player_fields, opponent_fields, make_move):
+    player_fields.add(make_move(player_fields, opponent_fields))
+    if check_player_victory(player_fields):
+        return 1
+    return 0
+
+
 def main(args):
     game()
+
 
 if __name__ == '__main__':
     main(sys.argv)
