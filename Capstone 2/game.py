@@ -50,7 +50,7 @@ def play_game():
     dealerHand = Hand()
     dealerCardValues = dealerHand.getCardValue()
 
-    while(True):
+    while (True):
         dealerHand.printOutHand()
         print("Hand value: " + str(dealerCardValues))
 

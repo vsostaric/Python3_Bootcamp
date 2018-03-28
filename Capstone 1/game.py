@@ -33,6 +33,16 @@ def play_game():
     player_1_fields = set()
     player_2_fields = set()
 
+    def play_turn(player_fields, opponent_fields, make_move):
+        player_fields.add(make_move(player_fields, opponent_fields))
+        if check_player_victory(player_fields):
+            return 1
+        return 0
+
+    def print_message_and_layout(message):
+        print(message)
+        write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
+
     print('Position layout: ')
     write_out_layout_legend()
 
@@ -41,27 +51,17 @@ def play_game():
 
         turn_outcome = play_turn(player_1_fields, player_2_fields, get_player_input)
         if turn_outcome == 1:
-            print(player_1_victory)
-            write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
+            print_message_and_layout(message=player_1_victory)
             return
 
         turn_outcome = play_turn(player_2_fields, player_1_fields, get_next_move)
         if turn_outcome == 1:
-            print(player_1_loss)
-            write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
+            print_message_and_layout(message=player_1_loss)
             return
 
         if check_draw_condition(player_1_fields, player_2_fields):
-            print(draw)
-            write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
+            print_message_and_layout(message=draw)
             return
-
-
-def play_turn(player_fields, opponent_fields, make_move):
-    player_fields.add(make_move(player_fields, opponent_fields))
-    if check_player_victory(player_fields):
-        return 1
-    return 0
 
 
 def main(args):

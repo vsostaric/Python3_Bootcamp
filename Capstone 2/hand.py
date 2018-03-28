@@ -24,6 +24,7 @@ class Hand:
     def printOutHand(self):
         for p in self.cards: print(p)
 
+
 def getValue(face):
     if face == 'A':
         return 1

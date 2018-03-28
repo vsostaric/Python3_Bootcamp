@@ -1,5 +1,5 @@
 def input_sign():
-    while(True):
+    while (True):
         player_sign = input('What sign do you choose? (X/O) ')
         if player_sign.lower() == 'x':
             print('Ok, you\'re X')
