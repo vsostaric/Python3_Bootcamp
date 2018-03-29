@@ -22,6 +22,7 @@ class Hand:
         self.cards.append(card)
 
     def printOutHand(self):
+        print("Hand: ")
         for p in self.cards: print(p)
 
 

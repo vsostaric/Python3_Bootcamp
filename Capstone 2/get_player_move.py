@@ -2,7 +2,7 @@ possible_moves = {1, 2}
 move_legend = '1 - Hit; 2 - Stay'
 
 
-def get_player_move():
+def get_player_move(value, opponent_value):
     while (True):
         print(move_legend)
         player_input = input('Chose move: ')

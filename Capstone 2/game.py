@@ -21,58 +21,55 @@ def game():
 
 def play_game():
     deck = shuffleDeck(createDeck())
-    deckPosition = 0
+    deck_position = 0
 
-    playerHand = Hand()
-    cardValues = playerHand.getCardValue()
+    def play(p_opponent_value, p_deck_position, get_move):
+        hand = Hand()
+        card_values = hand.getCardValue()
+        while True:
+            hand.printOutHand()
+            move = get_move(card_values, p_opponent_value)
+            if move == 2:
+                return p_deck_position, 0, card_values
+            if move == 1:
+                card = deck[p_deck_position]
+                p_deck_position += 1
+                hand.addCard(card)
 
-    while (True):
-        playerHand.printOutHand()
-        print("Hand value: " + str(cardValues))
-        playerMove = get_player_move()
-        if (playerMove == 2):
-            break
-        if (playerMove == 1):
-            card = deck[deckPosition]
-            deckPosition += 1
-            playerHand.addCard(card)
+            card_values = hand.getCardValue()
 
-        cardValues = playerHand.getCardValue()
+            if card_values > 21:
+                hand.printOutHand()
+                return p_deck_position, -1, card_values
 
-        if cardValues > 21:
-            playerHand.printOutHand()
-            print("Hand value: " + str(cardValues))
-            print("Bust! You lose!")
-            return
+            if 21 > card_values > p_opponent_value:
+                hand.printOutHand()
+
+                return p_deck_position, 1, card_values
+
+    deck_position, result, values = play(1000, deck_position, get_player_move)
+
+    print("Hand value: " + str(values))
+    if result == -1:
+        print("Bust! You lose!")
+        return
 
     print("Dealer's turn")
 
-    dealerHand = Hand()
-    dealerCardValues = dealerHand.getCardValue()
+    def get_dealer_move(value, opponent_value):
+        if 21 >= value >= opponent_value:
+            return 2
+        return 1
 
-    while (True):
-        dealerHand.printOutHand()
-        print("Hand value: " + str(dealerCardValues))
+    deck_position, result, values = play(values, deck_position, get_dealer_move)
 
-        card = deck[deckPosition]
-        deckPosition += 1
-        dealerHand.addCard(card)
-
-        dealerCardValues = dealerHand.getCardValue()
-
-        if dealerCardValues > 21:
-            dealerHand.printOutHand()
-            print("Hand value: " + str(dealerCardValues))
-            print("Dealer Busts! You win!")
-            return
-
-        if dealerCardValues > cardValues:
-            dealerHand.printOutHand()
-            print("Hand value: " + str(dealerCardValues))
-            print("Dealer wins!")
-            return
-
-    return
+    print("Hand value: " + str(values))
+    if result == -1:
+        print("Dealer Busts! You win!")
+    elif result == 1:
+        print("Dealer wins!")
+    elif result == 0:
+        print("Push!")
 
 
 def main(args):
