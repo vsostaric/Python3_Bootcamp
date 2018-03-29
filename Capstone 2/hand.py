@@ -2,31 +2,31 @@ class Hand:
     def __init__(self):
         self.cards = []
 
-    def getCardValue(self):
-        valueSum = 0
+    def get_card_value(self):
+        value_sum = 0
         aces = 0
         for card in self.cards:
-            value = getValue(card.face)
+            value = get_card_value(card.face)
             if value == 1:
                 aces += 1
             else:
-                valueSum += value
+                value_sum += value
         for i in range(0, aces):
-            if valueSum < 21 and (valueSum + 11) <= 21:
-                valueSum += 11
+            if value_sum < 21 and (value_sum + 11) <= 21:
+                value_sum += 11
             else:
-                valueSum += 1
-        return valueSum
+                value_sum += 1
+        return value_sum
 
-    def addCard(self, card):
+    def add_card(self, card):
         self.cards.append(card)
 
-    def printOutHand(self):
+    def print_out_hand(self):
         print("Hand: ")
         for p in self.cards: print(p)
 
 
-def getValue(face):
+def get_card_value(face):
     if face == 'A':
         return 1
     try:

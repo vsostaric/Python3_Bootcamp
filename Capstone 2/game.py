@@ -1,13 +1,13 @@
 import sys
+
+from get_player_move import get_player_move
+from hand import Hand
 from initialize_game import createDeck
 from initialize_game import shuffleDeck
-from card import Card
-from hand import Hand
-from get_player_move import get_player_move
 
 
 def game():
-    while (True):
+    while True:
         answer = input('Do you want to play a game? (Yes/No) ')
         if answer.lower() == 'no' or answer.lower() == 'n':
             print('Ok, bye then')
@@ -25,25 +25,25 @@ def play_game():
 
     def play(p_opponent_value, p_deck_position, get_move):
         hand = Hand()
-        card_values = hand.getCardValue()
+        card_values = hand.get_card_value()
         while True:
-            hand.printOutHand()
+            hand.print_out_hand()
             move = get_move(card_values, p_opponent_value)
             if move == 2:
                 return p_deck_position, 0, card_values
             if move == 1:
                 card = deck[p_deck_position]
                 p_deck_position += 1
-                hand.addCard(card)
+                hand.add_card(card)
 
-            card_values = hand.getCardValue()
+            card_values = hand.get_card_value()
 
             if card_values > 21:
-                hand.printOutHand()
+                hand.print_out_hand()
                 return p_deck_position, -1, card_values
 
             if 21 > card_values > p_opponent_value:
-                hand.printOutHand()
+                hand.print_out_hand()
 
                 return p_deck_position, 1, card_values
 
