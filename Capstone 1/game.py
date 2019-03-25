@@ -11,6 +11,7 @@ from draw_layout import write_out_layout
 from draw_layout import write_out_layout_legend
 from get_player_input import get_player_input
 from input_sign import input_sign
+from input_who_plays_first import does_human_play_first
 
 free_positions = all_positions
 
@@ -30,6 +31,8 @@ def game():
 
 def play_game():
     player_1_sign, player_2_sign = input_sign()
+    player_1_first = does_human_play_first()
+
     player_1_fields = set()
     player_2_fields = set()
 
@@ -47,17 +50,30 @@ def play_game():
     write_out_layout_legend()
 
     while True:
-        write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
+        if (player_1_first):
+            write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
 
-        turn_outcome = play_turn(player_1_fields, player_2_fields, get_player_input)
-        if turn_outcome == 1:
-            print_message_and_layout(message=player_1_victory)
-            return
+            turn_outcome = play_turn(player_1_fields, player_2_fields, get_player_input)
+            if turn_outcome == 1:
+                print_message_and_layout(message=player_1_victory)
+                return
 
-        turn_outcome = play_turn(player_2_fields, player_1_fields, get_next_move)
-        if turn_outcome == 1:
-            print_message_and_layout(message=player_1_loss)
-            return
+            turn_outcome = play_turn(player_2_fields, player_1_fields, get_next_move)
+            if turn_outcome == 1:
+                print_message_and_layout(message=player_1_loss)
+                return
+        else:
+            turn_outcome = play_turn(player_2_fields, player_1_fields, get_next_move)
+            if turn_outcome == 1:
+                print_message_and_layout(message=player_1_loss)
+                return
+
+            write_out_layout(player_1_fields, player_1_sign, player_2_fields, player_2_sign)
+
+            turn_outcome = play_turn(player_1_fields, player_2_fields, get_player_input)
+            if turn_outcome == 1:
+                print_message_and_layout(message=player_1_victory)
+                return
 
         if check_draw_condition(player_1_fields, player_2_fields):
             print_message_and_layout(message=draw)
