@@ -5,5 +5,7 @@ from keras.layers import Dense
 class Brain:
 
     def __init__(self):
-        self.classifier = Sequential()
-        self.classifier.add(Dense(units=5, activation='sigmoid', input_dim=10))
+        self.neural_network = Sequential()
+        self.neural_network.add(Dense(units=5, activation='sigmoid', input_dim=10))
+        self.neural_network.add(Dense(units=5, activation='sigmoid'))
+        self.neural_network.add(Dense(units=1, activation='sigmoid'))
