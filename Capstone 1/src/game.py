@@ -75,7 +75,7 @@ def play_game(brain):
                 brain = learn(moves, -1, brain)
                 return
 
-            turn_outcome, move = play_turn(get_next_move, player_2_fields, player_2_fields, player_1_fields, brain)
+            turn_outcome, move = play_turn(get_next_move, player_2_fields, player_2_fields, player_1_fields, moves, brain)
             moves.append(move)
 
             if turn_outcome == 1:
@@ -83,7 +83,7 @@ def play_game(brain):
                 brain = learn(moves, 1, brain)
                 return
         else:
-            turn_outcome, move = play_turn(get_next_move, player_2_fields, player_2_fields, player_1_fields, brain)
+            turn_outcome, move = play_turn(get_next_move, player_2_fields, player_2_fields, player_1_fields, moves, brain)
             moves.append(move)
 
             if turn_outcome == 1:

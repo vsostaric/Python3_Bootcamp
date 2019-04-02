@@ -9,3 +9,4 @@ class Brain:
         self.neural_network.add(Dense(units=5, activation='sigmoid', input_dim=10))
         self.neural_network.add(Dense(units=5, activation='sigmoid'))
         self.neural_network.add(Dense(units=1, activation='sigmoid'))
+        self.neural_network.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
